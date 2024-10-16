@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "246734962391",
+    "project_id": "event-orientation-app-7829e",
+    "storage_bucket": "event-orientation-app-7829e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246734962391:android:ce56db7e4793a261bdba92",
+        "android_client_info": {
+          "package_name": "com.example.event_orientation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_PNTmXG1yFajmPijmFoD_jzZvt09s0VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
