@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class UpcomingEventsWidget extends StatelessWidget {
   final List<EventModel> events;
   final String email;
+
   UpcomingEventsWidget({
     super.key,
     required this.events,
@@ -25,9 +26,21 @@ class UpcomingEventsWidget extends StatelessWidget {
   }
 
   final List<Map<String, String>> upcomingEvents = [
-    {'image': 'assets/event4.jpg', 'date': '2024-12-15'},
-    {'image': 'assets/event2.jpg', 'date': '2024-11-26'},
-    {'image': 'assets/event6.jpg', 'date': '2024-10-10'},
+    {
+      'image':
+          'https://media.istockphoto.com/id/1289085646/vector/holiday-abstract-shiny-color-gold-design-element.jpg?s=612x612&w=0&k=20&c=KxxPq3pjtgny0SHSF8BLyX1RnxHRa3KmW1fVFn9L2xc=',
+      'date': '2024-12-15'
+    },
+    {
+      'image':
+          'https://media.istockphoto.com/id/1289085646/vector/holiday-abstract-shiny-color-gold-design-element.jpg?s=612x612&w=0&k=20&c=KxxPq3pjtgny0SHSF8BLyX1RnxHRa3KmW1fVFn9L2xc=',
+      'date': '2024-11-26'
+    },
+    {
+      'image':
+          'https://media.istockphoto.com/id/1289085646/vector/holiday-abstract-shiny-color-gold-design-element.jpg?s=612x612&w=0&k=20&c=KxxPq3pjtgny0SHSF8BLyX1RnxHRa3KmW1fVFn9L2xc=',
+      'date': '2024-10-10'
+    },
   ];
 
   @override
@@ -93,11 +106,11 @@ class UpcomingEventsWidget extends StatelessWidget {
                         children: [
                           Text(
                             event.eventtype,
-                            style: TTypography.textWhite18Bold,
+                            style: TTypography.textWhite20Bold,
                           ),
                           Text(
                             eventDetails['date']!,
-                            style: TTypography.textWhite16,
+                            style: TTypography.textWhite18,
                           ),
                         ],
                       ),

@@ -1,13 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:event_orientation_app/modules/User/Event_Screen/presentation/bloc/event_bloc.dart';
 import 'package:event_orientation_app/modules/User/Event_Screen/presentation/bloc/event_event.dart';
 import 'package:event_orientation_app/modules/User/Event_Screen/presentation/bloc/event_state.dart';
-import 'package:event_orientation_app/modules/User/Home/presentation/widgets/home_carousel.dart';
 import 'package:event_orientation_app/modules/User/Home/presentation/widgets/home_event.dart';
 import 'package:event_orientation_app/modules/User/Home/presentation/widgets/home_upcoming_event.dart';
 import 'package:event_orientation_app/modules/User/user-drawer/user_drawer.dart';
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
-import 'package:event_orientation_app/utils/components/tt_typography.dart';
 import 'package:event_orientation_app/utils/components/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final String email = ModalRoute.of(context)?.settings.arguments as String;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return BlocProvider(
       create: (context) => EventBloc()..add(FetchEvents()),
@@ -63,13 +64,49 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CarouselWidget(),
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          height: screenHeight * 0.30,
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                        ),
+                        items: [
+                          'assets/event1.jpg',
+                          'assets/event2.jpg',
+                          'assets/event3.jpg',
+                        ].map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                width: screenWidth,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    i,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }).toList(),
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 16),
                       child: Text(
                         'Events',
-                        style: TTypography.textBlue22Bold,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          color: TTColors.primary,
+                        ),
                       ),
                     ),
                     UIHelpers.verticalSpaceSmall,
@@ -85,7 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.only(left: 16, top: 4),
                       child: Text(
                         'Upcoming Events',
-                        style: TTypography.textBlue22Bold,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          color: TTColors.primary,
+                        ),
                       ),
                     ),
                     Container(

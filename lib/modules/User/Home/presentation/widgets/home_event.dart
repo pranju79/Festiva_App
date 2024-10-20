@@ -8,28 +8,11 @@ import 'package:flutter/material.dart';
 class EventListWidget extends StatelessWidget {
   final List<EventModel> events;
   final String email;
-  EventListWidget({super.key, required this.events, required this.email});
-
-  final List<Map<String, String>> eventData = [
-    {
-      'image': 'assets/event4.jpg',
-    },
-    {
-      'image': 'assets/event5.jpg',
-    },
-    {
-      'image': 'assets/event7.jpg',
-    },
-    {
-      'image': 'assets/event6.jpg',
-    },
-    {
-      'image': 'assets/event2.jpg',
-    },
-    {
-      'image': 'assets/event3.jpg',
-    },
-  ];
+  const EventListWidget({
+    super.key,
+    required this.events,
+    required this.email,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +21,7 @@ class EventListWidget extends StatelessWidget {
       itemCount: events.length,
       itemBuilder: (context, index) {
         final event = events[index];
-        final eventimg = eventData[index];
+
         return GestureDetector(
           onTap: () {
             Navigator.push(
@@ -63,10 +46,11 @@ class EventListWidget extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage(eventimg['image']!),
+                          image: NetworkImage(
+                              'https://cdn-icons-png.flaticon.com/256/7425/7425048.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
