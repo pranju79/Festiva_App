@@ -5,9 +5,9 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-final String email;
+  final String email;
 
-LoginSuccess({required this.email});
+  LoginSuccess({required this.email});
 }
 
 class LoginFailure extends LoginState {

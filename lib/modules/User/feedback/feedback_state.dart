@@ -7,10 +7,9 @@ abstract class FeedbackState extends Equatable {
 
 class FeedbackInitial extends FeedbackState {}
 
-class FeedbackLoading extends FeedbackState {} // State while loading
+class FeedbackLoading extends FeedbackState {}
 
-class FeedbackSubmitted
-    extends FeedbackState {} // State after successful submission
+class FeedbackSubmitted extends FeedbackState {}
 
 class FeedbackError extends FeedbackState {
   final String message;

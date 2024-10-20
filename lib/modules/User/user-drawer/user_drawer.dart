@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_orientation_app/modules/User/Booking_Details/presentation/views/view_booking.dart';
 import 'package:event_orientation_app/modules/User/EventList/presentation/views/event_list_mobile_view.dart';
@@ -9,9 +8,9 @@ import 'package:event_orientation_app/utils/components/tt_icons.dart';
 import 'package:flutter/material.dart';
 
 class UserDrawer extends StatelessWidget {
-  String? email;
+  final String? email;
 
-  UserDrawer({
+  const UserDrawer({
     super.key,
     required this.email,
   });
@@ -133,7 +132,21 @@ class UserDrawer extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => FeedbackPage(email: userEmail)));
+                                builder: (_) =>
+                                    FeedbackPage(email: userEmail)));
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(
+                        Icons.photo_library,
+                        color: TTColors.darkBlue,
+                      ),
+                      title: const Text(
+                        'Gallery',
+                        style: TextStyle(color: TTColors.darkBlue),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/gallery');
                       },
                     ),
                     ListTile(

@@ -89,24 +89,26 @@ class _AdminRegisterState extends State<AdminRegister> {
                     end: Alignment.bottomRight,
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      const Center(
-                        child: CircleAvatar(
-                          radius: 60,
-                          backgroundColor: Colors.purpleAccent,
-                          backgroundImage: NetworkImage(
-                              'https://miro.medium.com/v2/resize:fit:512/1*7tlP1ph61ompULJdycVJlQ.png'),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        const Center(
+                          child: CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.purpleAccent,
+                            backgroundImage: NetworkImage(
+                                'https://miro.medium.com/v2/resize:fit:512/1*7tlP1ph61ompULJdycVJlQ.png'),
+                          ),
                         ),
-                      ),
-                      UIHelpers.verticalSpaceMedium,
-                      AdminRegisterForm(
-                        formKey: _formKey,
-                        gradientColors: gradientColors,
-                      ),
-                    ],
+                        UIHelpers.verticalSpaceMedium,
+                        AdminRegisterForm(
+                          formKey: _formKey,
+                          gradientColors: gradientColors,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

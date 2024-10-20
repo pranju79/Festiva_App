@@ -6,16 +6,20 @@ import 'package:flutter/material.dart';
 
 class UpcomingEventsWidget extends StatelessWidget {
   final List<EventModel> events;
-   String email;
-  UpcomingEventsWidget({super.key, required this.events,required this.email});
+  final String email;
+  UpcomingEventsWidget({
+    super.key,
+    required this.events,
+    required this.email,
+  });
 
-  
   List<Map<String, String>> _filterUpcomingEvents() {
     final currentDate = DateTime.now();
-    
+
     final filteredEvents = upcomingEvents.where((event) {
       final eventDate = DateTime.parse(event['date']!);
-      return eventDate.isAfter(currentDate) || eventDate.isAtSameMomentAs(currentDate);
+      return eventDate.isAfter(currentDate) ||
+          eventDate.isAtSameMomentAs(currentDate);
     }).toList();
     return filteredEvents;
   }
@@ -41,12 +45,15 @@ class UpcomingEventsWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => EventMobileView(eventtype: event.eventtype,email: email,),
+                builder: (context) => EventMobileView(
+                  eventtype: event.eventtype,
+                  email: email,
+                ),
               ),
             );
           },
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(14.0),
             child: Stack(
               children: [
                 Container(
@@ -74,23 +81,23 @@ class UpcomingEventsWidget extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width*0.95,
+                      width: MediaQuery.sizeOf(context).width * 0.95,
                       height: 150,
                       decoration: BoxDecoration(
                         color: TTColors.blackOpacity,
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             event.eventtype,
-                            style: TTypography.textWhite16Bold,
+                            style: TTypography.textWhite18Bold,
                           ),
                           Text(
                             eventDetails['date']!,
-                            style: TTypography.textWhite14,
+                            style: TTypography.textWhite16,
                           ),
                         ],
                       ),

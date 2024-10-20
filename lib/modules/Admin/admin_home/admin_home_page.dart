@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:event_orientation_app/modules/Admin/admin_drawer/admin_drawer.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
+import 'package:event_orientation_app/utils/components/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
@@ -85,6 +84,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CarouselSlider(
                 options: CarouselOptions(
@@ -135,15 +135,18 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16.0),
-              const Text(
-                'Recent Users',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: TTColors.textPrimary),
+              UIHelpers.verticalSpaceMedium,
+              const Center(
+                child: Text(
+                  'Recent Users',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: TTColors.primary,
+                  ),
+                ),
               ),
-              const SizedBox(height: 8.0),
+              UIHelpers.verticalSpaceRegular,
               SizedBox(
                 height: screenHeight * 0.3,
                 child: StreamBuilder<QuerySnapshot>(
@@ -181,15 +184,18 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 16.0),
-              const Text(
-                'All Events',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: TTColors.textPrimary),
+              UIHelpers.verticalSpaceMedium,
+              const Center(
+                child: Text(
+                  'Booked Events',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: TTColors.primary,
+                  ),
+                ),
               ),
-              const SizedBox(height: 8.0),
+              UIHelpers.verticalSpaceRegular,
               SizedBox(
                 height: screenHeight * 0.3,
                 child: StreamBuilder<QuerySnapshot>(
@@ -214,56 +220,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             title: Text(eventData['eventName'] ?? 'N/A',
                                 style: const TextStyle(
                                     color: TTColors.textPrimary)),
-                            subtitle: Text(eventData['eventDate'] ?? 'N/A',
+                            subtitle: Text(eventData['DOevent'] ?? 'N/A',
                                 style: const TextStyle(
                                     color: TTColors.textSecondary)),
                             trailing: Text(eventData['location'] ?? 'N/A',
                                 style: const TextStyle(
                                     color: TTColors.textSecondary)),
                             onTap: () => _showEventDetails(context, eventData),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              const Text(
-                'Upcoming Events',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: TTColors.textPrimary),
-              ),
-              const SizedBox(height: 8.0),
-              SizedBox(
-                height: screenHeight * 0.3,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('UpcomingEvents')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    final data = snapshot.requireData;
-                    return ListView.builder(
-                      itemCount: data.size,
-                      itemBuilder: (context, index) {
-                        final eventData =
-                            data.docs[index].data() as Map<String, dynamic>;
-                        return Card(
-                          margin: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: ListTile(
-                            leading: const Icon(Icons.event_available,
-                                color: TTColors.primary),
-                            title: Text(eventData['EventName'] ?? 'N/A',
-                                style: const TextStyle(
-                                    color: TTColors.textPrimary)),
-                            subtitle: Text(eventData['EventDate'] ?? 'N/A',
-                                style: const TextStyle(
-                                    color: TTColors.textSecondary)),
                           ),
                         );
                       },
@@ -287,7 +250,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Date: ${eventData['eventDate'] ?? 'N/A'}'),
+                Text('Date: ${eventData['DOevent'] ?? 'N/A'}'),
                 Text('Email: ${eventData['emailID'] ?? 'N/A'}'),
                 Text('Theme: ${eventData['eventTheme'] ?? 'N/A'}'),
                 Text('Location: ${eventData['location'] ?? 'N/A'}'),

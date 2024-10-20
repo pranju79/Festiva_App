@@ -7,16 +7,28 @@ import 'package:flutter/material.dart';
 
 class EventListWidget extends StatelessWidget {
   final List<EventModel> events;
-  String email;
-  EventListWidget({super.key, required this.events,required this.email});
+  final String email;
+  EventListWidget({super.key, required this.events, required this.email});
 
   final List<Map<String, String>> eventData = [
-    {'image': 'assets/event4.jpg', },
-    {'image':'assets/event5.jpg',},
-    {'image': 'assets/event7.jpg', },
-    {'image': 'assets/event6.jpg', },
-    {'image':'assets/event2.jpg',},
-    {'image':'assets/event3.jpg',},
+    {
+      'image': 'assets/event4.jpg',
+    },
+    {
+      'image': 'assets/event5.jpg',
+    },
+    {
+      'image': 'assets/event7.jpg',
+    },
+    {
+      'image': 'assets/event6.jpg',
+    },
+    {
+      'image': 'assets/event2.jpg',
+    },
+    {
+      'image': 'assets/event3.jpg',
+    },
   ];
 
   @override
@@ -31,7 +43,9 @@ class EventListWidget extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => EventMobileView(eventtype: event.eventtype,email:email)),
+              MaterialPageRoute(
+                  builder: (context) => EventMobileView(
+                      eventtype: event.eventtype, email: email)),
             );
           },
           child: Padding(
@@ -59,12 +73,11 @@ class EventListWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                UIHelpers.verticalSpaceTiny,
-              
+                UIHelpers.verticalSpaceSmall,
                 Flexible(
                   child: Text(
-                    event.eventtype, // Display event type here
-                    style: TTypography.textBlack54Bold, // Adjust the style as needed
+                    event.eventtype,
+                    style: TTypography.textBlack54Bold,
                     textAlign: TextAlign.center,
                   ),
                 ),

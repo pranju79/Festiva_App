@@ -10,7 +10,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class FeedbackPage extends StatefulWidget {
   final String email;
-  const FeedbackPage({super.key,required this.email});
+  const FeedbackPage({super.key, required this.email});
 
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
@@ -18,9 +18,9 @@ class FeedbackPage extends StatefulWidget {
 
 class _FeedbackPageState extends State<FeedbackPage> {
   final _formKey = GlobalKey<FormState>();
-  int _rating = 0; // Variable to hold the rating
-  bool _submitted = false; // Track submission state
-  String _selectedDate = ""; // Variable to hold selected date
+  int _rating = 0;
+  bool _submitted = false;
+  String _selectedDate = "";
 
   final List<Color> gradientColors = [
     TTColors.blue,
@@ -36,7 +36,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
         listener: (context, state) {
           if (state is FeedbackSubmitted) {
             setState(() {
-              _submitted = true; // Set submitted state
+              _submitted = true;
             });
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Feedback submitted successfully!')),
@@ -51,19 +51,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
           final bloc = BlocProvider.of<FeedbackBloc>(context);
 
           return Scaffold(
-            appBar: AppBar(
-              foregroundColor: TTColors.white,
-              elevation: 0,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: gradientColors,
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-            ),
             body: Container(
               decoration: const BoxDecoration(
                 gradient: TTColors.gradientColor,
@@ -95,6 +82,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 decoration: const InputDecoration(
                                     labelText: "Name",
                                     border: OutlineInputBorder()),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) =>
                                     value == null || value.isEmpty
                                         ? "Please enter your name"
@@ -103,10 +92,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               UIHelpers.verticalSpaceMedium,
                               TextFormField(
                                 readOnly: true,
-                                controller: TextEditingController(text: widget.email),
+                                controller:
+                                    TextEditingController(text: widget.email),
                                 decoration: const InputDecoration(
                                     labelText: "Email",
                                     border: OutlineInputBorder()),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) =>
                                     value == null || value.isEmpty
                                         ? "Please enter your email"
@@ -118,6 +110,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 decoration: const InputDecoration(
                                     labelText: "Event",
                                     border: OutlineInputBorder()),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) =>
                                     value == null || value.isEmpty
                                         ? "Please enter the event"
@@ -125,8 +119,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               ),
                               UIHelpers.verticalSpaceMedium,
                               TextFormField(
-                                readOnly:
-                                    true, // Make field read-only to prevent manual input
+                                readOnly: true,
                                 decoration: InputDecoration(
                                   labelText: "Date",
                                   border: const OutlineInputBorder(),
@@ -137,6 +130,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 ),
                                 controller:
                                     TextEditingController(text: _selectedDate),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) =>
                                     value == null || value.isEmpty
                                         ? "Please select a date"
@@ -148,6 +143,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 decoration: const InputDecoration(
                                     labelText: "Feedback",
                                     border: OutlineInputBorder()),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) =>
                                     value == null || value.isEmpty
                                         ? "Please enter your feedback"
@@ -163,10 +160,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                           ? Icons.star
                                           : Icons.star_border,
                                       color: TTColors.purple,
+                                      size: 30,
                                     ),
                                     onPressed: () {
                                       setState(() {
-                                        _rating = index + 1; // Update rating
+                                        _rating = index + 1;
                                       });
                                     },
                                   );
@@ -184,17 +182,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                   onPressed: () {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      // Pass the text controllers and rating to the SubmitFeedback event
                                       bloc.add(
                                         SubmitFeedback(
                                           name: bloc.nameController.text,
                                           email: widget.email,
                                           event: bloc.eventController.text,
-                                          date:
-                                              _selectedDate, // Include selected date
+                                          date: _selectedDate,
                                           feedback:
                                               bloc.feedbackController.text,
-                                          rating: _rating, // Include the rating
+                                          rating: _rating,
                                         ),
                                       );
                                     }
@@ -204,27 +200,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 ),
                               ),
                               UIHelpers.verticalSpaceLarge,
-                              // ElevatedButton(
-                              //   onPressed: () {
-                              //     Navigator.push(
-                              //       context,
-                              //       MaterialPageRoute(builder: (context) => FeedbackListPage()),
-                              //     );
-                              //   },
-                              //   child: const Text("View Feedback List"),
-                              // ),
                             ],
                           ),
                         ),
-                        // Display rating after submission
                         if (_submitted) ...[
                           UIHelpers.verticalSpaceLarge,
                           Column(
                             children: [
                               const Text("Your Rating:",
                                   style: TTypography.textBlue30Bold),
-                              UIHelpers
-                                  .verticalSpaceSmall, // Optional space between label and stars
+                              UIHelpers.verticalSpaceSmall,
                               RatingBarIndicator(
                                 rating: _rating.toDouble(),
                                 itemBuilder: (context, index) => const Icon(
@@ -250,7 +235,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
     );
   }
 
-  // Method to show the date picker
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -260,8 +244,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        _selectedDate =
-            "${picked.toLocal()}".split(' ')[0]; // Format date as needed
+        _selectedDate = "${picked.toLocal()}".split(' ')[0];
       });
     }
   }

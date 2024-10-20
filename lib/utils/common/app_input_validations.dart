@@ -4,7 +4,6 @@ class Validations {
       return 'Time is required';
     }
 
-    // Regular expression to match the time in 12-hour format with AM/PM
     RegExp regExp = RegExp(r'^(0?[1-9]|1[0-2]):[0-5][0-9]\s*(?:AM|PM|am|pm)?$');
 
     if (!regExp.hasMatch(value)) {

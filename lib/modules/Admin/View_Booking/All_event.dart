@@ -17,14 +17,14 @@ class EventDetailsPage extends StatefulWidget {
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
-  String? status; // Variable to hold the status
+  String? status;
 
   Future<void> _updateStatus(DocumentSnapshot doc, String newStatus) async {
     await FirebaseFirestore.instance
         .collection('Event Book')
         .doc(doc.id)
         .update({
-      'status': newStatus, // Update the 'status' field with the new value
+      'status': newStatus,
     });
   }
 
@@ -70,16 +70,14 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           itemCount: eventDetails.length,
           itemBuilder: (context, index) {
             final doc = eventDetails[index];
-            final data =
-                doc.data() as Map<String, dynamic>?; // Safely cast to Map
+            final data = doc.data() as Map<String, dynamic>?;
 
             if (data == null) {
-              return const Text("No data available"); // Handle null data case
+              return const Text("No data available");
             }
 
-            String? currentStatus = data.containsKey('status')
-                ? data['status']
-                : 'Confirm'; // Default to 'Approve'
+            String? currentStatus =
+                data.containsKey('status') ? data['status'] : 'Confirm';
 
             return Card(
               margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -128,8 +126,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       style: const TextStyle(fontSize: 16),
                     ),
                     const SizedBox(height: 16),
-
-                    // Dropdown to select Approve/Reject status
                     Container(
                       width: 300,
                       child: Column(
@@ -139,8 +135,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               labelText: 'Status',
                               border: OutlineInputBorder(),
                             ),
-                            value:
-                                currentStatus, // Default value is 'Approve' if no status found
+                            value: currentStatus,
                             items: const [
                               DropdownMenuItem(
                                 value: 'Pending',
@@ -159,8 +154,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               setState(() {
                                 status = value;
                                 if (status != null) {
-                                  _updateStatus(doc,
-                                      status!); // Update Firestore with the new status
+                                  _updateStatus(doc, status!);
                                 }
                               });
                             },
@@ -168,7 +162,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 8),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.delete),

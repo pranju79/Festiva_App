@@ -45,11 +45,11 @@ class BankPayment extends StatelessWidget {
                       children: [
                         Text(
                           'Owner Name : ',
-                          style: TTypography.textBlack16Bold,
+                          style: TTypography.textBlack18Bold,
                         ),
                         Text(
-                          'Telphatech LLP',
-                          style: TTypography.textBlack16,
+                          'Festiva Official',
+                          style: TTypography.textBlack18,
                         ),
                       ],
                     ),
@@ -59,11 +59,11 @@ class BankPayment extends StatelessWidget {
                       children: [
                         Text(
                           'Bank Name : ',
-                          style: TTypography.textBlack16Bold,
+                          style: TTypography.textBlack18Bold,
                         ),
                         Text(
-                          'ABC Bank ',
-                          style: TTypography.textBlack16,
+                          'State Bank of India',
+                          style: TTypography.textBlack18,
                         ),
                       ],
                     ),
@@ -73,11 +73,11 @@ class BankPayment extends StatelessWidget {
                       children: [
                         Text(
                           'Branch : ',
-                          style: TTypography.textBlack16Bold,
+                          style: TTypography.textBlack18Bold,
                         ),
                         Text(
                           'Pune',
-                          style: TTypography.textBlack16,
+                          style: TTypography.textBlack18,
                         ),
                       ],
                     ),
@@ -87,11 +87,11 @@ class BankPayment extends StatelessWidget {
                       children: [
                         Text(
                           'Account No : ',
-                          style: TTypography.textBlack16Bold,
+                          style: TTypography.textBlack18Bold,
                         ),
                         Text(
-                          '154789632475124',
-                          style: TTypography.textBlack16,
+                          '65743856231',
+                          style: TTypography.textBlack18,
                         ),
                       ],
                     ),
@@ -101,11 +101,11 @@ class BankPayment extends StatelessWidget {
                       children: [
                         Text(
                           'IFSC Code : ',
-                          style: TTypography.textBlack16Bold,
+                          style: TTypography.textBlack18Bold,
                         ),
                         Text(
-                          'BANK0111111',
-                          style: TTypography.textBlack16,
+                          'SBIN0548435',
+                          style: TTypography.textBlack18,
                         ),
                       ],
                     ),

@@ -20,31 +20,43 @@ class ContactPage extends StatelessWidget {
                 height: 200,
                 width: 500,
                 decoration: BoxDecoration(
-                  border: Border.all(color: TTColors.blue,width: 2),
-                  color: TTColors.white,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    border: Border.all(color: TTColors.blue, width: 2),
+                    color: TTColors.white,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     UIHelpers.verticalSpaceRegular,
-                   ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (Rect bounds) {
-                      return const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [TTColors.pink, TTColors.blue],
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [TTColors.pink, TTColors.blue],
                         ).createShader(bounds);
-                    },
-                    child: const Icon(TTIcons.mail,size: 60,),
-                   ),
-                   const Text('Email',style: TTypography.textBlack22Bold,),
-                   UIHelpers.verticalSpaceRegular,
-                   GestureDetector(
-                    onTap: (){
-                       _launchMail();
-                    },
-                     child: const Text('telphatech@gmail.com',style: TextStyle(decoration: TextDecoration.underline,fontSize: 18,color: TTColors.blue,decorationColor: TTColors.blue),))
+                      },
+                      child: const Icon(
+                        TTIcons.mail,
+                        size: 60,
+                      ),
+                    ),
+                    const Text(
+                      'Email',
+                      style: TTypography.textBlack22Bold,
+                    ),
+                    UIHelpers.verticalSpaceRegular,
+                    GestureDetector(
+                        onTap: () {
+                          _launchMail();
+                        },
+                        child: const Text(
+                          'festiva@gmail.com',
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 18,
+                              color: TTColors.blue,
+                              decorationColor: TTColors.blue),
+                        ))
                   ],
                 ),
               ),
@@ -55,31 +67,43 @@ class ContactPage extends StatelessWidget {
                 height: 200,
                 width: 500,
                 decoration: BoxDecoration(
-                  border: Border.all(color: TTColors.blue,width: 2),
-                  color: TTColors.white,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    border: Border.all(color: TTColors.blue, width: 2),
+                    color: TTColors.white,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     UIHelpers.verticalSpaceRegular,
-                   ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (Rect bounds) {
-                      return const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [TTColors.pink, TTColors.blue],
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [TTColors.pink, TTColors.blue],
                         ).createShader(bounds);
-                    },
-                    child: const Icon(TTIcons.call,size: 60,),
-                   ),
-                   const Text('Phone',style: TTypography.textBlack22Bold,),
-                   UIHelpers.verticalSpaceRegular,
-                   GestureDetector(
-                    onTap: (){
-                       _launchPhoneDailer('8421835869');
-                    },
-                     child: const Text('\t+918421835869',style: TextStyle(decoration: TextDecoration.underline,fontSize: 18,color: TTColors.blue,decorationColor: TTColors.blue),))
+                      },
+                      child: const Icon(
+                        TTIcons.call,
+                        size: 60,
+                      ),
+                    ),
+                    const Text(
+                      'Phone',
+                      style: TTypography.textBlack22Bold,
+                    ),
+                    UIHelpers.verticalSpaceRegular,
+                    GestureDetector(
+                        onTap: () {
+                          _launchPhoneDailer('9754638654');
+                        },
+                        child: const Text(
+                          '\t+91 9754638654',
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 18,
+                              color: TTColors.blue,
+                              decorationColor: TTColors.blue),
+                        ))
                   ],
                 ),
               ),
@@ -90,35 +114,47 @@ class ContactPage extends StatelessWidget {
                 height: 200,
                 width: 500,
                 decoration: BoxDecoration(
-                  border: Border.all(color: TTColors.blue,width: 2),
-                  color: TTColors.white,
-                  borderRadius: BorderRadius.circular(10)
-                ),
+                    border: Border.all(color: TTColors.blue, width: 2),
+                    color: TTColors.white,
+                    borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     UIHelpers.verticalSpaceRegular,
-                   ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (Rect bounds) {
-                      return const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [TTColors.pink, TTColors.blue],
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [TTColors.pink, TTColors.blue],
                         ).createShader(bounds);
-                    },
-                    child: const Icon(TTIcons.location,size: 60,),
-                   ),
-                   const Text('Location',style: TTypography.textBlack22Bold,),
-                   UIHelpers.verticalSpaceRegular,
-                   GestureDetector(
-                    onTap: () async {
-                      final url = Uri.parse(
-                      'https://www.google.com/maps/place/Telphatech+LLP/@18.5939629,73.8146337,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b97f1230d2ab:0xf41fb59379af829e!8m2!3d18.5939629!4d73.8172086!16s%2Fg%2F11tng9ld0j?entry=ttu');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                    },
-                     child: const Text('\tPune',style: TextStyle(decoration: TextDecoration.underline,fontSize: 18,color: TTColors.blue,decorationColor: TTColors.blue),))
+                      },
+                      child: const Icon(
+                        TTIcons.location,
+                        size: 60,
+                      ),
+                    ),
+                    const Text(
+                      'Location',
+                      style: TTypography.textBlack22Bold,
+                    ),
+                    UIHelpers.verticalSpaceRegular,
+                    GestureDetector(
+                        onTap: () async {
+                          final url = Uri.parse(
+                              'https://www.google.com/maps/place/Pune,+Maharashtra/@18.5293766,73.7126801,11.25z/data=!4m6!3m5!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343!8m2!3d18.5204303!4d73.8567437!16zL20vMDE1eTJx?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D');
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          }
+                        },
+                        child: const Text(
+                          '\tPune',
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontSize: 18,
+                              color: TTColors.blue,
+                              decorationColor: TTColors.blue),
+                        ))
                   ],
                 ),
               ),
@@ -129,8 +165,9 @@ class ContactPage extends StatelessWidget {
     );
   }
 }
+
 _launchMail() async {
-  const url = 'mailto:telphatech@gmail.com?subject=Hello&body=Hello%20Telphatech';
+  const url = 'mailto:festiva@gmail.com?subject=Hello&body=Hello%20Festiva';
   if (await canLaunch(url)) {
     await launch(url);
   } else {

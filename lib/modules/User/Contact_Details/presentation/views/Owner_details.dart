@@ -54,7 +54,10 @@ class OwnerDetails extends StatelessWidget {
                   )
                 ]),
           ),
-          body: const TabBarView(children: [ContactPage(), PaymentDetails()]),
+          body: const TabBarView(children: [
+            ContactPage(),
+            PaymentDetails(),
+          ]),
         ),
       ),
     );

@@ -1,5 +1,3 @@
-//Pooja Kaloji
-
 abstract class AddEventState {}
 
 final class AddEventInitialState extends AddEventState {}

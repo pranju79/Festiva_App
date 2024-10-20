@@ -9,10 +9,12 @@ import 'package:event_orientation_app/utils/components/tt_typography.dart';
 import 'package:event_orientation_app/utils/components/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class ViewBooking extends StatelessWidget {
-  String email;
-  ViewBooking({super.key,required this.email});
+  final String email;
+  const ViewBooking({
+    super.key,
+    required this.email,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +48,38 @@ class ViewBooking extends StatelessWidget {
           if (snapshot.data!.docs.isEmpty) {
             return Center(
               child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(
-                    height: 400,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/event.png'),
-                        UIHelpers.verticalSpaceSmall,
-                        const Text('You have not made any bookings yet!',style: TTypography.textBlack14,),
-                        UIHelpers.verticalSpaceRegular,
-                        GradientButton(
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=> EventListMobileView(email: email)));
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  height: 400,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/event.png'),
+                      UIHelpers.verticalSpaceSmall,
+                      const Text(
+                        'You have not made any bookings yet!',
+                        style: TTypography.textBlack14,
+                      ),
+                      UIHelpers.verticalSpaceRegular,
+                      GradientButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        EventListMobileView(email: email)));
                           },
-                           child: const Padding(
-                             padding: EdgeInsets.fromLTRB(40, 5, 40, 5),
-                             child: Text('Book Your Event',style: TTypography.textWhite16Bold,),
-                           ))
-                      ],
-                    ),
-                    ),
+                          child: const Padding(
+                            padding: EdgeInsets.fromLTRB(40, 5, 40, 5),
+                            child: Text(
+                              'Book Your Event',
+                              style: TTypography.textWhite16Bold,
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
               ),
             );
           }
@@ -95,12 +107,12 @@ class ViewBooking extends StatelessWidget {
                   child: Card(
                     margin: const EdgeInsets.all(10),
                     child: SizedBox(
-                      height: 100,
+                      height: 130,
                       width: double.infinity,
                       child: Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(6.0),
                             child: Column(
                               children: [
                                 ShaderMask(
@@ -131,12 +143,14 @@ class ViewBooking extends StatelessWidget {
                                   GradientText(
                                     eventName,
                                     gradient: TTColors.gradientColor,
-                                    style: TTypography.textBlack16Bold,
+                                    style: TTypography.textBlack18Bold,
                                   ),
+                                  UIHelpers.verticalSpaceSmall,
                                   Text(
                                     'Package: \n$package',
-                                    style: TTypography.textBlack12,
+                                    style: TTypography.textBlack14,
                                   ),
+                                  UIHelpers.verticalSpaceSmall,
                                   Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Row(
@@ -153,7 +167,7 @@ class ViewBooking extends StatelessWidget {
                                             child: Text(
                                               '$status',
                                               style: TextStyle(
-                                                fontSize: 15,
+                                                fontSize: 16,
                                                 color: getStatusTextColor(
                                                     '$status'),
                                                 fontWeight: FontWeight.w500,

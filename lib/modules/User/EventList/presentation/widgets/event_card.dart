@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 class EventCardWidget extends StatelessWidget {
   final EventModel event;
-  final String imageUrl;
 
-  const EventCardWidget({super.key, required this.event, required this.imageUrl});
+  const EventCardWidget({
+    super.key,
+    required this.event,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +21,18 @@ class EventCardWidget extends StatelessWidget {
         elevation: 5,
         child: Stack(
           children: [
-           
             Container(
               width: double.infinity,
-              height: 150.0, 
+              height: 150.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
+                image: const DecorationImage(
+                  image: NetworkImage(
+                      'https://media.istockphoto.com/id/1289085646/vector/holiday-abstract-shiny-color-gold-design-element.jpg?s=612x612&w=0&k=20&c=KxxPq3pjtgny0SHSF8BLyX1RnxHRa3KmW1fVFn9L2xc='),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-           
             Container(
               width: double.infinity,
               height: 150.0,
@@ -44,7 +45,6 @@ class EventCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-          
             Positioned(
               top: 8.0,
               left: 8.0,
@@ -56,11 +56,10 @@ class EventCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       event.eventtype,
-                      style: TTypography.textWhite50Bold.copyWith(fontSize: 20),
+                      style: TTypography.textWhite50Bold.copyWith(fontSize: 24),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    
                   ],
                 ),
               ),

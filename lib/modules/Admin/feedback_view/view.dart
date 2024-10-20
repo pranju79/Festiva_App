@@ -113,11 +113,18 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
                                 style: TTypography.textBlack16),
                           ],
                         ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            const Icon(Icons.comment, color: TTColors.blue),
+                            const SizedBox(width: 8),
+                            Text("Comment: ${feedback.feedback}",
+                                style: TTypography.textBlack16),
+                          ],
+                        ),
                         const SizedBox(height: 10),
-                        // Display user rating as stars
                         RatingBarIndicator(
-                          rating: feedback.rating
-                              .toDouble(), // Use actual user rating
+                          rating: feedback.rating.toDouble(),
                           itemBuilder: (context, index) => const Icon(
                             Icons.star,
                             color: Colors.amber,

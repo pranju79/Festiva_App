@@ -84,17 +84,6 @@ class AdminDrawer extends StatelessWidget {
                       ),
                       ListTile(
                         leading:
-                            const Icon(Icons.person_add, color: TTColors.darkBlue),
-                        title: const Text(
-                          'Add Admin',
-                          style: TextStyle(color: TTColors.darkBlue),
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(context, '/adminregister');
-                        },
-                      ),
-                      ListTile(
-                        leading:
                             const Icon(Icons.add, color: TTColors.darkBlue),
                         title: const Text(
                           'Add Event',
@@ -135,6 +124,17 @@ class AdminDrawer extends StatelessWidget {
                         ),
                         onTap: () {
                           Navigator.pushNamed(context, '/admindata');
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.person_add,
+                            color: TTColors.darkBlue),
+                        title: const Text(
+                          'Add Admin',
+                          style: TextStyle(color: TTColors.darkBlue),
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, '/adminregister');
                         },
                       ),
                       ListTile(

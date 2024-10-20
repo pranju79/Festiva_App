@@ -23,8 +23,8 @@ import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentat
 import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentation/pages/User_Register.dart';
 import 'package:event_orientation_app/modules/User/User_Profile/presentation/pages/user_profile.dart';
 import 'package:event_orientation_app/modules/User/feedback/uiview/feedback_form_screen.dart';
+import 'package:event_orientation_app/modules/User/gallery/presentation/pages/gallery.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 class AppRoutes {
   static const String splashscreen = '/';
@@ -56,6 +56,7 @@ class AppRoutes {
   static const String termspolicies = '/termspolicies';
   static const String eventlist = '/eventlist';
   static const String feedbackform = '/feedbackform';
+  static const String gallery = '/gallery';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -67,7 +68,7 @@ class AppRoutes {
       adminhome: (context) => const AdminHomeScreen(),
       adminprofile: (context) => const AdminProfile(),
       addeventtheme: (context) => const AddData(),
-      admindata:(context) => const AdminData(),
+      admindata: (context) => const AdminData(),
       addeventform: (context) => const AddEventForm(),
       addthemeform: (context) => const AddThemesForm(),
       adminviewbooking: (context) => const BookingDetailsPage(),
@@ -83,19 +84,22 @@ class AppRoutes {
       register: (context) => const UserRegisterPage(),
       userhome: (context) => const HomeScreen(),
       userprofile: (context) => const UserProfile(),
-      eventdetails: (context) => EventMobileView(
+      eventdetails: (context) => const EventMobileView(
             email: '',
             eventtype: '',
           ),
       ownerdetails: (context) => const OwnerDetails(),
-      viewbookinguser: (context) => ViewBooking(
+      viewbookinguser: (context) => const ViewBooking(
             email: '',
           ),
       contactdetails: (context) => const ContactPage(),
       paymentdetails: (context) => const PaymentDetails(),
       termspolicies: (context) => const TermsAndPolicies(),
-      eventlist: (context) => EventListMobileView(email: ''),
-      feedbackform: (context) => const FeedbackPage(email: '',),
+      eventlist: (context) => const EventListMobileView(email: ''),
+      feedbackform: (context) => const FeedbackPage(
+            email: '',
+          ),
+      gallery: (context) => const Gallery(),
     };
   }
 }

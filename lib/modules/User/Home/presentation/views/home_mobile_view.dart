@@ -8,6 +8,7 @@ import 'package:event_orientation_app/modules/User/user-drawer/user_drawer.dart'
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
 import 'package:event_orientation_app/utils/components/tt_typography.dart';
+import 'package:event_orientation_app/utils/components/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     final String email = ModalRoute.of(context)?.settings.arguments as String;
@@ -27,31 +27,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocProvider(
       create: (context) => EventBloc()..add(FetchEvents()),
       child: Scaffold(
-      appBar: AppBar(
-        foregroundColor: TTColors.white,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/userprofile',
-                arguments: email,
-              );
-            },
-            icon: const Icon(
-              TTIcons.profileRounded,
-              color: TTColors.white,
+        appBar: AppBar(
+          foregroundColor: TTColors.white,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/userprofile',
+                  arguments: email,
+                );
+              },
+              icon: const Icon(
+                TTIcons.profileRounded,
+                color: TTColors.white,
+              ),
+            ),
+          ],
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: TTColors.gradientColor,
             ),
           ),
-        ],
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: TTColors.gradientColor,
-          ),
         ),
-      ),
-      drawer: UserDrawer(email: email),
-      body: SingleChildScrollView(
+        drawer: UserDrawer(email: email),
+        body: SingleChildScrollView(
           child: BlocBuilder<EventBloc, EventState>(
             builder: (context, state) {
               if (state is EventLoading) {
@@ -66,37 +66,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: CarouselWidget(),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: GradientText(
-                          '  Events',
-                          gradient: TTColors.gradientColor,
-                          style: TTypography.textGradient,
-                        ),
+                      padding: EdgeInsets.only(left: 16),
+                      child: Text(
+                        'Events',
+                        style: TTypography.textBlue22Bold,
                       ),
                     ),
+                    UIHelpers.verticalSpaceSmall,
                     Container(
                       height: 130,
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: EventListWidget(events: events,email: email,),
+                      margin: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: EventListWidget(
+                        events: events,
+                        email: email,
+                      ),
                     ),
-                  
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: GradientText(
-                          '  Upcoming Events',
-                          gradient: TTColors.gradientColor,
-                          style: TTypography.textGradient,
-                        ),
+                      padding: EdgeInsets.only(left: 16, top: 4),
+                      child: Text(
+                        'Upcoming Events',
+                        style: TTypography.textBlue22Bold,
                       ),
                     ),
                     Container(
                       height: 500,
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: UpcomingEventsWidget(events: events,email: email,),
+                      child: UpcomingEventsWidget(
+                        events: events,
+                        email: email,
+                      ),
                     ),
                   ],
                 );

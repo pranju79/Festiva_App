@@ -1,7 +1,5 @@
 import 'package:event_orientation_app/modules/User/EventBookForm/data/models/eventbook_model.dart';
 import 'package:event_orientation_app/modules/User/EventBookForm/presentation/bloc/eventbook_bloc.dart';
-import 'package:event_orientation_app/modules/User/Home/presentation/views/home_mobile_view.dart';
-import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentation/pages/Loginpage.dart';
 import 'package:event_orientation_app/utils/common/app_input_validations.dart';
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
@@ -12,14 +10,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class EventBookForm extends StatefulWidget {
-  String? eventname;
-  String? themename;
+  final String? eventname;
+  final String? themename;
   final String email;
-  EventBookForm(
-      {super.key,
-      required this.eventname,
-      required this.themename,
-      required this.email});
+  const EventBookForm({
+    super.key,
+    required this.eventname,
+    required this.themename,
+    required this.email,
+  });
 
   @override
   State<EventBookForm> createState() => _EventFormState();
@@ -83,11 +82,6 @@ class _EventFormState extends State<EventBookForm> {
                                 padding: const EdgeInsets.all(15),
                                 child: Column(
                                   children: [
-                                    // const Text(
-                                    //   'Event App',
-                                    //   style: TTypography.textBlack22Bold,
-                                    // ),
-                                    UIHelpers.verticalSpaceMedium,
                                     Column(
                                       children: [
                                         const Text(
@@ -124,6 +118,9 @@ class _EventFormState extends State<EventBookForm> {
                                                           .profileRounded),
                                                     ),
                                                   ),
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   validator: (value) =>
                                                       Validations
                                                           .nameValidation(
@@ -154,6 +151,9 @@ class _EventFormState extends State<EventBookForm> {
                                                           TTIcons.mail),
                                                     ),
                                                   ),
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   validator: (value) =>
                                                       Validations.validateEmail(
                                                           value)),
@@ -182,6 +182,9 @@ class _EventFormState extends State<EventBookForm> {
                                                           },
                                                           child: const Icon(TTIcons
                                                               .mobileRounded))),
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   validator: (value) =>
                                                       Validations
                                                           .mobileValidation(
@@ -213,11 +216,13 @@ class _EventFormState extends State<EventBookForm> {
                                                           child: const Icon(
                                                               TTIcons
                                                                   .add_event))),
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   validator: (value) =>
                                                       Validations
                                                           .nameValidation(
                                                               value)),
-
                                               UIHelpers.verticalSpaceMedium,
                                               TextFormField(
                                                   readOnly: true,
@@ -245,6 +250,9 @@ class _EventFormState extends State<EventBookForm> {
                                                           child: const Icon(
                                                               TTIcons
                                                                   .Themeselect))),
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   validator: (value) =>
                                                       Validations
                                                           .nameValidation(
@@ -330,6 +338,9 @@ class _EventFormState extends State<EventBookForm> {
                                                         },
                                                         child: const Icon(
                                                             TTIcons.location))),
+                                                autovalidateMode:
+                                                    AutovalidateMode
+                                                        .onUserInteraction,
                                                 validator: (value) =>
                                                     Validations.requireField(
                                                         value),
@@ -358,6 +369,9 @@ class _EventFormState extends State<EventBookForm> {
                                                         },
                                                         child: const Icon(
                                                             TTIcons.persons))),
+                                                autovalidateMode:
+                                                    AutovalidateMode
+                                                        .onUserInteraction,
                                                 validator: (value) =>
                                                     Validations.requireField(
                                                         value),
@@ -372,7 +386,7 @@ class _EventFormState extends State<EventBookForm> {
                                                       Text(
                                                         'Select Package',
                                                         style: TTypography
-                                                            .textBlack24Bold,
+                                                            .textBlack22Bold,
                                                       ),
                                                     ],
                                                   ),
@@ -449,8 +463,8 @@ class _EventFormState extends State<EventBookForm> {
                                                     },
                                                   ),
                                                   RadioListTile(
-                                                    title: const Text('None'),
-                                                    value: "None",
+                                                    title: const Text('More'),
+                                                    value: "More",
                                                     groupValue: _selectedValue,
                                                     onChanged: (value) {
                                                       setState(() {
@@ -466,8 +480,8 @@ class _EventFormState extends State<EventBookForm> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   SizedBox(
-                                                    width: 180,
-                                                    height: 50,
+                                                    width: 140,
+                                                    height: 40,
                                                     child: ElevatedButton(
                                                       style: const ButtonStyle(
                                                         backgroundColor:

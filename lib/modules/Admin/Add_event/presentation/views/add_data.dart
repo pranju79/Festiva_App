@@ -1,5 +1,3 @@
-//Pooja Kaloji
-
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
 import 'package:event_orientation_app/utils/components/tt_typography.dart';
@@ -19,76 +17,106 @@ class AddData extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Container(
-          decoration: const BoxDecoration(gradient: TTColors.gradientColor),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.all(30),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.30,
+              decoration: const BoxDecoration(
+                gradient: TTColors.gradientColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(50),
+                  bottomRight: Radius.circular(50),
+                ),
+              ),
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/addeventform');
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            TTIcons.add_event,
-                            color: TTColors.pink,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Add Event',
-                            style: TTypography.textBlack18,
-                          ),
-                        ],
-                      ),
-                    ),
+                  Icon(
+                    TTIcons.add_event,
+                    color: TTColors.white,
+                    size: 80,
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/addthemeform');
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            TTIcons.add_theme,
-                            color: TTColors.pink,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Add Themes',
-                            style: TTypography.textBlack18,
-                          ),
-                        ],
-                      ),
-                    ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Add New Event & Themes",
+                    style: TTypography.textWhite24Bold,
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildFullWidthButton(
+                    context,
+                    '/addeventform',
+                    TTIcons.add_event,
+                    "Add Event",
+                  ),
+                  const SizedBox(height: 30),
+                  _buildFullWidthButton(
+                    context,
+                    '/addthemeform',
+                    TTIcons.add_theme,
+                    "Add Themes",
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFullWidthButton(
+    BuildContext context,
+    String routeName,
+    IconData icon,
+    String label,
+  ) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, routeName);
+      },
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        elevation: 5,
+        shadowColor: TTColors.black.withOpacity(0.3),
+      ),
+      child: Ink(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [TTColors.pink, TTColors.blue],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 18),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: Colors.white, size: 30),
+              const SizedBox(width: 15),
+              Text(
+                label,
+                style: TTypography.textWhite18.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ],
           ),
         ),
       ),

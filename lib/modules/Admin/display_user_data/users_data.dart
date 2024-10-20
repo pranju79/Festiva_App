@@ -13,15 +13,40 @@ class _UsersDataState extends State<UsersData> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  Future<void> _updateUser(DocumentSnapshot doc) async {
-    // Implement your update logic here
-  }
-
   Future<void> _deleteUser(DocumentSnapshot doc) async {
-    await FirebaseFirestore.instance
-        .collection('UserRegister')
-        .doc(doc.id)
-        .delete();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Deletion'),
+          content: const Text('Are you sure you want to delete this user?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      await FirebaseFirestore.instance
+          .collection('UserRegister')
+          .doc(doc.id)
+          .delete();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('User deleted successfully!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override
@@ -124,29 +149,16 @@ class _UsersDataState extends State<UsersData> {
                                   style: const TextStyle(fontSize: 16),
                                 ),
                                 const SizedBox(height: 8),
-                                Text(
-                                  'Gender: ${(doc.data() as Map<String, dynamic>).containsKey('gender') ? doc['gender'] : 'N/A'}',
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                const SizedBox(height: 16),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    ElevatedButton.icon(
-                                      icon: const Icon(Icons.edit),
-                                      label: const Text('Edit'),
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor: TTColors.white,
-                                        backgroundColor: TTColors.blue,
-                                      ),
-                                      onPressed: () {
-                                        _updateUser(doc);
-                                      },
+                                    Text(
+                                      'Gender: ${(doc.data() as Map<String, dynamic>).containsKey('gender') ? doc['gender'] : 'N/A'}',
+                                      style: const TextStyle(fontSize: 16),
                                     ),
-                                    const SizedBox(width: 8),
-                                    ElevatedButton.icon(
-                                      icon: const Icon(Icons.delete),
-                                      label: const Text('Delete'),
+                                    ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         foregroundColor: TTColors.white,
                                         backgroundColor: Colors.red,
@@ -154,6 +166,7 @@ class _UsersDataState extends State<UsersData> {
                                       onPressed: () {
                                         _deleteUser(doc);
                                       },
+                                      child: const Icon(Icons.delete),
                                     ),
                                   ],
                                 ),

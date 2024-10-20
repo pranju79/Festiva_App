@@ -38,11 +38,11 @@ class UPIPayment extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Owner Name :',
+                    'Owner Name : ',
                     style: TTypography.textBlack20Bold,
                   ),
                   Text(
-                    'Telphatech LLP',
+                    'Festiva Official',
                     style: TTypography.textBlack20,
                   )
                 ],
@@ -56,7 +56,7 @@ class UPIPayment extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('UPI_ID: ', style: TTypography.textBlack16Bold),
-                  Text('telphatech@okaxisbank', style: TTypography.textBlack16)
+                  Text('festiva45@oksbi', style: TTypography.textBlack16)
                 ],
               ),
               const SizedBox(

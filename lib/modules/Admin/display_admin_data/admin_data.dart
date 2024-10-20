@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_orientation_app/utils/components/tt_colors.dart'; 
+import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:flutter/material.dart';
 
 class AdminData extends StatefulWidget {
   const AdminData({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _AdminDataState createState() => _AdminDataState();
 }
 
@@ -14,30 +13,52 @@ class _AdminDataState extends State<AdminData> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  Future<void> _updateUser(DocumentSnapshot doc) async {
-    // Implement your update logic here
-  }
-
   Future<void> _deleteUser(DocumentSnapshot doc) async {
-    await FirebaseFirestore.instance.collection('admin_register').doc(doc.id).delete();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm Deletion'),
+          content: const Text('Are you sure you want to delete this admin?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('No'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      await FirebaseFirestore.instance
+          .collection('admin_register')
+          .doc(doc.id)
+          .delete();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Admin deleted successfully!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: const Text(
-            'Admin Data',
-            style: TextStyle(color: Colors.white),
-          ),
+        foregroundColor: TTColors.white,
+        title: const Text(
+          'Admin Data',
+          style: TextStyle(color: Colors.white),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: TTColors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -82,14 +103,19 @@ class _AdminDataState extends State<AdminData> {
               const SizedBox(height: 16),
               Expanded(
                 child: StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection('admin_register').snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection('admin_register')
+                      .snapshots(),
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
                     }
 
                     final filteredDocs = snapshot.data!.docs.where((doc) {
-                      final name = (doc.data() as Map<String, dynamic>)['name']?.toString().toLowerCase() ?? '';
+                      final name = (doc.data() as Map<String, dynamic>)['name']
+                              ?.toString()
+                              .toLowerCase() ??
+                          '';
                       return name.contains(_searchQuery);
                     }).toList();
 
@@ -108,7 +134,9 @@ class _AdminDataState extends State<AdminData> {
                               children: [
                                 Text(
                                   'Name: ${(doc.data() as Map<String, dynamic>).containsKey('name') ? doc['name'] : 'N/A'}',
-                                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
@@ -116,39 +144,24 @@ class _AdminDataState extends State<AdminData> {
                                   style: const TextStyle(fontSize: 16),
                                 ),
                                 const SizedBox(height: 8),
-                                Text(
-                                  'Mobile No: ${(doc.data() as Map<String, dynamic>).containsKey('mobileno') ? doc['mobileno'] : 'N/A'}',
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  'Password: ${(doc.data() as Map<String, dynamic>).containsKey('password') ? doc['password'] : 'N/A'}',
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                const SizedBox(height: 16),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    ElevatedButton.icon(
-                                      icon: const Icon(Icons.edit),
-                                      label: const Text('Edit'),
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor: Colors.white, backgroundColor: Colors.blue,
-                                      ),
-                                      onPressed: () {
-                                        _updateUser(doc);
-                                      },
+                                    Text(
+                                      'Mobile No: ${(doc.data() as Map<String, dynamic>).containsKey('mobileno') ? doc['mobileno'] : 'N/A'}',
+                                      style: const TextStyle(fontSize: 16),
                                     ),
-                                    const SizedBox(width: 8),
-                                    ElevatedButton.icon(
-                                      icon: const Icon(Icons.delete),
-                                      label: const Text('Delete'),
+                                    ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: Colors.white, backgroundColor: Colors.red,
+                                        foregroundColor: TTColors.white,
+                                        backgroundColor: Colors.red,
                                       ),
                                       onPressed: () {
                                         _deleteUser(doc);
                                       },
+                                      child: const Icon(Icons.delete),
                                     ),
                                   ],
                                 ),

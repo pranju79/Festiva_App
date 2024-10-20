@@ -36,13 +36,7 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
-        decoration: const BoxDecoration(
-            // gradient: LinearGradient(
-            //   colors: [Colors.blue, Colors.purple, Colors.pink],
-            //   begin: Alignment.topLeft,
-            //   end: Alignment.bottomRight,
-            // ),
-            ),
+        decoration: const BoxDecoration(),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

@@ -87,7 +87,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                           GradientText(
                             '${doc['eventName']}',
                             gradient: TTColors.gradientColor,
-                            style: TTypography.textBlack20Bold,
+                            style: TTypography.textBlack16Bold,
                           ),
                         ],
                       ),
@@ -113,7 +113,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                           ),
                           Text(
                             '${doc['DOevent']}',
-                            style: TTypography.textBlack18,
+                            style: TTypography.textBlack16,
                           ),
                         ],
                       ),
@@ -126,7 +126,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                           ),
                           Text(
                             '${doc['location']}',
-                            style: TTypography.textBlack18,
+                            style: TTypography.textBlack16,
                           ),
                         ],
                       ),
@@ -139,7 +139,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                           ),
                           Text(
                             '${doc['noGuest']}',
-                            style: TTypography.textBlack18,
+                            style: TTypography.textBlack16,
                           ),
                         ],
                       ),
@@ -152,7 +152,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                           ),
                           Text(
                             '${doc['package']}',
-                            style: TTypography.textBlack13,
+                            style: TTypography.textBlack14,
                           ),
                         ],
                       ),
@@ -167,7 +167,7 @@ class _ViewBookingDetailsState extends State<ViewBookingDetails> {
                             '${doc['status']}',
                             style: TextStyle(
                                 color: getStatusTextColor('${doc['status']}'),
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700),
                           ),
                         ],

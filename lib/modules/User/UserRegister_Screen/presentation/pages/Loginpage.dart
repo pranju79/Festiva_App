@@ -38,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
               SnackBar(
                 content: Text(
                   state.error,
-                  style: TTypography.textBlue22Bold,
                 ),
               ),
             );
@@ -50,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
           }
           return Scaffold(
             body: Container(
-              height: double.infinity, // Set the height to double.infinity here
+              height: double.infinity,
               decoration: const BoxDecoration(
                 gradient: TTColors.gradientColor,
               ),
@@ -111,8 +110,10 @@ class _LoginPageState extends State<LoginPage> {
                                               child: const Icon(TTIcons.mail),
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
-                                              Validations.requireField(value),
+                                              Validations.validateEmail(value),
                                         ),
                                         UIHelpers.verticalSpaceLarge,
                                         TextFormField(
@@ -120,8 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                               BlocProvider.of<LoginBloc>(
                                                       context)
                                                   .passController,
-                                          obscureText:
-                                              _obscureText, // Toggles visibility
+                                          obscureText: _obscureText,
                                           decoration: InputDecoration(
                                             labelText: "Password",
                                             labelStyle: TTypography.textBlack16,
@@ -141,10 +141,20 @@ class _LoginPageState extends State<LoginPage> {
                                               child: const Icon(TTIcons.pass),
                                             ),
                                             suffixIcon: IconButton(
-                                              icon: Icon(
-                                                _obscureText
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
+                                              icon: ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (Rect bounds) {
+                                                  return LinearGradient(
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                    colors: gradientColors,
+                                                  ).createShader(bounds);
+                                                },
+                                                child: Icon(
+                                                  _obscureText
+                                                      ? Icons.visibility_off
+                                                      : Icons.visibility,
+                                                ),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -153,8 +163,11 @@ class _LoginPageState extends State<LoginPage> {
                                               },
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
-                                              Validations.requireField(value),
+                                              Validations.passwordValidation(
+                                                  value),
                                         ),
                                         UIHelpers.verticalSpaceLarge,
                                         Column(
@@ -210,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                                             Navigator.pushNamed(
                                                 context, '/register');
                                           },
-                                          child: const Text("Click Here"),
+                                          child: const Text("Register Here"),
                                         ),
                                       ],
                                     ),

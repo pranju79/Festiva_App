@@ -195,7 +195,7 @@ class TermsAndPolicies extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '- These Terms and Conditions are governed by and construed in accordance with the laws of [Your Country/State].',
+                      '- These Terms and Conditions are governed by and construed in accordance with the laws of India.',
                       style: TextStyle(fontSize: 16, color: TTColors.white),
                     ),
                     SizedBox(height: 16),
@@ -223,7 +223,7 @@ class TermsAndPolicies extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '- If you have any questions about these Terms and Conditions, please contact us at [Contact Information].',
+                      '- If you have any questions about these Terms and Conditions, please contact us at festiva@gmail.com.',
                       style: TextStyle(fontSize: 16, color: TTColors.white),
                     ),
                     SizedBox(height: 24),
@@ -320,7 +320,7 @@ class TermsAndPolicies extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '- You have the right to access, update, or delete your personal information. You can do this by contacting us at [Contact Information].',
+                      '- You have the right to access, update, or delete your personal information. You can do this by contacting us at festiva@gmail.com.',
                       style: TextStyle(fontSize: 16, color: TTColors.white),
                     ),
                     SizedBox(height: 16),
@@ -362,7 +362,7 @@ class TermsAndPolicies extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '- If you have any questions about this Privacy Policy, please contact us at [Contact Information].',
+                      '- If you have any questions about this Privacy Policy, please contact us at festiva@gmail.com.',
                       style: TextStyle(fontSize: 16, color: TTColors.white),
                     ),
                   ],

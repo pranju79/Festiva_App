@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventListMobileView extends StatelessWidget {
-  String email;
-  EventListMobileView({super.key, required this.email});
+  final String email;
+  const EventListMobileView({
+    super.key,
+    required this.email,
+  });
 
   @override
   Widget build(BuildContext context) {

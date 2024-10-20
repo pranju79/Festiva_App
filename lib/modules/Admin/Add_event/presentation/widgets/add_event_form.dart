@@ -1,5 +1,3 @@
-//Pooja Kaloji
-
 import 'dart:io';
 import 'package:event_orientation_app/modules/Admin/Add_event/data/models/event_model.dart';
 import 'package:event_orientation_app/modules/Admin/Add_event/presentation/bloc/add_event_bloc.dart';

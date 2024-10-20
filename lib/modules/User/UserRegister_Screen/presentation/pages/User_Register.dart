@@ -1,13 +1,11 @@
 import 'package:event_orientation_app/modules/User/UserRegister_Screen/data/models/user_model.dart';
 import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentation/bloc/user_register/user_register_bloc.dart';
 import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentation/bloc/user_register/user_register_event.dart';
-import 'package:event_orientation_app/modules/User/UserRegister_Screen/presentation/pages/Loginpage.dart';
 import 'package:event_orientation_app/utils/common/app_input_validations.dart';
 import 'package:event_orientation_app/utils/components/tt_colors.dart';
 import 'package:event_orientation_app/utils/components/tt_icons.dart';
 import 'package:event_orientation_app/utils/components/tt_typography.dart';
 import 'package:event_orientation_app/utils/components/ui_helpers.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +19,11 @@ class UserRegisterPage extends StatefulWidget {
 class _UserRegisterPageState extends State<UserRegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _gender;
-  final List<Color> gradientColors = [Colors.blue, Colors.purple, Colors.pink];
+  final List<Color> gradientColors = [
+    Colors.blue,
+    Colors.purple,
+    Colors.pink,
+  ];
   bool _obscureText = true;
   bool _obscureText1 = true;
   @override
@@ -56,7 +58,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
           }
           return Scaffold(
             body: Container(
-              decoration: BoxDecoration(gradient: TTColors.gradientColor),
+              decoration: const BoxDecoration(gradient: TTColors.gradientColor),
               child: Center(
                 child: SingleChildScrollView(
                   child: Padding(
@@ -100,10 +102,12 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                                   colors: gradientColors,
                                                 ).createShader(bounds);
                                               },
-                                              child:
-                                                  Icon(TTIcons.profileRounded),
+                                              child: const Icon(
+                                                  TTIcons.profileRounded),
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
                                               Validations.nameValidation(value),
                                         ),
@@ -124,9 +128,11 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                                   colors: gradientColors,
                                                 ).createShader(bounds);
                                               },
-                                              child: Icon(TTIcons.mail),
+                                              child: const Icon(TTIcons.mail),
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
                                               Validations.validateEmail(value),
                                         ),
@@ -149,36 +155,15 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                                       colors: gradientColors,
                                                     ).createShader(bounds);
                                                   },
-                                                  child: Icon(
+                                                  child: const Icon(
                                                       TTIcons.mobileRounded))),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
                                               Validations.mobileValidation(
                                                   value),
                                         ),
                                         UIHelpers.verticalSpaceMedium,
-                                        // TextFormField(
-                                        //     controller: BlocProvider.of<
-                                        //             UserRegisterBloc>(context)
-                                        //         .GenderController,
-                                        //     decoration: InputDecoration(
-                                        //         labelText: "Gender",
-                                        //         icon: ShaderMask(
-                                        //             blendMode: BlendMode.srcIn,
-                                        //             shaderCallback:
-                                        //                 (Rect bounds) {
-                                        //               return LinearGradient(
-                                        //                 begin:
-                                        //                     Alignment.topLeft,
-                                        //                 end: Alignment
-                                        //                     .bottomRight,
-                                        //                 colors: gradientColors,
-                                        //               ).createShader(bounds);
-                                        //             },
-                                        //             child: const Icon(TTIcons
-                                        //                 .profileRounded))),
-                                        //     validator: (value) =>
-                                        //         Validations.requireField(
-                                        //             value)),
                                         DropdownButtonFormField(
                                           items: const [
                                             DropdownMenuItem(
@@ -219,8 +204,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               BlocProvider.of<UserRegisterBloc>(
                                                       context)
                                                   .PassController,
-                                          obscureText:
-                                              _obscureText, // Toggles visibility
+                                          obscureText: _obscureText,
                                           decoration: InputDecoration(
                                             labelText: "Create New Password",
                                             labelStyle: TTypography.textBlack16,
@@ -236,10 +220,20 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               child: const Icon(TTIcons.pass),
                                             ),
                                             suffixIcon: IconButton(
-                                              icon: Icon(
-                                                _obscureText
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
+                                              icon: ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (Rect bounds) {
+                                                  return LinearGradient(
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                    colors: gradientColors,
+                                                  ).createShader(bounds);
+                                                },
+                                                child: Icon(
+                                                  _obscureText
+                                                      ? Icons.visibility_off
+                                                      : Icons.visibility,
+                                                ),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -248,6 +242,8 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               },
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
                                               Validations.passwordValidation(
                                                   value),
@@ -258,8 +254,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               BlocProvider.of<UserRegisterBloc>(
                                                       context)
                                                   .ConformPassController,
-                                          obscureText:
-                                              _obscureText1, // Toggles visibility
+                                          obscureText: _obscureText1,
                                           decoration: InputDecoration(
                                             labelText: "Confirm Password",
                                             labelStyle: TTypography.textBlack16,
@@ -275,10 +270,20 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               child: const Icon(TTIcons.pass),
                                             ),
                                             suffixIcon: IconButton(
-                                              icon: Icon(
-                                                _obscureText1
-                                                    ? Icons.visibility_off
-                                                    : Icons.visibility,
+                                              icon: ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (Rect bounds) {
+                                                  return LinearGradient(
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                    colors: gradientColors,
+                                                  ).createShader(bounds);
+                                                },
+                                                child: Icon(
+                                                  _obscureText1
+                                                      ? Icons.visibility_off
+                                                      : Icons.visibility,
+                                                ),
                                               ),
                                               onPressed: () {
                                                 setState(() {
@@ -288,6 +293,8 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                               },
                                             ),
                                           ),
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) =>
                                               Validations.requireField(value),
                                         ),
@@ -359,7 +366,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                                             Navigator.pushNamed(
                                                 context, '/login');
                                           },
-                                          child: const Text("Click Here"),
+                                          child: const Text("Login Here"),
                                         )
                                       ],
                                     ),

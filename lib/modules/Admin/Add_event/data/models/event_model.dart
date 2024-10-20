@@ -1,6 +1,4 @@
-//Pooja Kaloji
-
-class EventModel{
+class EventModel {
   String title;
   String imageUrl;
   String description;
@@ -21,23 +19,24 @@ class EventModel{
     required this.theme,
     required this.eventtype,
     required this.event_date,
-    });
+  });
 
-    static EventModel fromFirestore(Map<String, dynamic> data) {
+  static EventModel fromFirestore(Map<String, dynamic> data) {
     return EventModel(
       imageUrl: data['imageurl'] ?? '',
       title: data['title'] ?? '',
       eventtype: data['event_type'] ?? '',
       description: '',
-      service:'',
-      price:'',
-      package:'',
-      theme:'', 
+      service: '',
+      price: '',
+      package: '',
+      theme: '',
       event_date: '',
     );
   }
 }
-class ThemeModel{
+
+class ThemeModel {
   String theme;
   String themetitle;
   String themeimage;
